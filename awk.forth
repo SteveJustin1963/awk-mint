@@ -1,4 +1,4 @@
-```awk
+ 
 #!/usr/bin/awk -f
 
 # Initialize an empty stack.
@@ -70,4 +70,4 @@ END {
         exit 1
     }
 }
-```
+ 
