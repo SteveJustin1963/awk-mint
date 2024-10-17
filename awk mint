@@ -1,3 +1,18 @@
+//////////////////
+
+0 a! 0 b!
+:S 0 b! ( `Read and split the input into fields` 48 - );
+:P b . 1 = ( `Column 1: ` a . ) /E 3 = ( `Column 3: ` a . ) /E;
+:Q 2 = ( a + a! ) `Running sum of column 2: ` a .;
+:R 3 = ( a 100 > ( `Column 3 greater than 100` . ) ) /E;
+:F `Formatted output: ` a .;
+:L `Entire line: ` .;
+:C S b .;
+:M `Choose a command: ` . `/1` P `/2` Q `/3` R `/4` F `/5` L `/6` C;
+M
+
+///////////////////////
+
 0 a!               // Initialize COL1-SUM to 0 (sum of column 2)
 0 b!               // Initialize NUM-FIELDS (number of fields)
 
@@ -54,16 +69,4 @@
 // Start processing
 M                                // Run the main function
 
-//////////////////
 
-0 a! 0 b!
-:S 0 b! ( `Read and split the input into fields` 48 - )
-:P b . 1 = ( `Column 1: ` a . ) /E 3 = ( `Column 3: ` a . ) /E
-:Q 2 = ( a + a! ) `Running sum of column 2: ` a .
-:R 3 = ( a 100 > ( `Column 3 greater than 100` . ) ) /E
-:F `Formatted output: ` a .
-:L `Entire line: ` .
-:C S b .
-:M `Choose a command: ` . `/1` P `/2` Q `/3` R `/4` F `/5` L `/6` C
-M
-///////////////////////
