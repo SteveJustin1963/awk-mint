@@ -1,1 +1,39 @@
-xxx
+// full of errors
+
+0 a! 0 b!
+
+:S 0 b! (`Read and split the input into fields` 48 - ) ;
+
+:F a! S b . ;       // Function to split input and count fields
+
+:C ( a 1 = ( `Column 1: ` a . ) /E ) ;    // Function to print column 1
+:D ( a 3 = ( `Column 3: ` a . ) /E ) ;    // Function to print column 3
+
+:P F C D ;                                 // Function to print columns 1 and 3
+
+:Q a 2 = ( a + a! ) ;                      // Function to add to sum if column 2
+:R F Q `Running sum of column 2: ` a . ;  // Function to handle sum and display result
+
+:T a 3 = ( a 100 > ( `Column 3 greater than 100` . ) ) /E ;
+:U F T ;                                  // Function to check column 3 value
+
+:V `Formatted output: ` a . ;            // Function for formatted output
+:W F V ;                                 // Main function for formatted print
+
+:X `Entire line: ` . ;                   // Function to print entire line
+:Y F X ;                                 // Main function to print the full line
+
+:Z b . ;                                 // Function to print the number of fields
+:A F Z ;                                 // Main function for counting fields
+
+:B
+    `Choose a command: ` .
+    `/1` P /N
+    `/2` R /N
+    `/3` U /N
+    `/4` W /N
+    `/5` Y /N
+    `/6` A /N
+; 
+
+:M B ;
