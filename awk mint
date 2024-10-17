@@ -16,7 +16,14 @@
 
 :C S b .;
 
-:M `Choose a command: ` . `/1` P `/2` Q `/3` R `/4` F `/5` L `/6` C;
+:M `Choose a command: ` 
+`/1` P /N
+`/2` Q /N
+`/3` R /N
+`/4` F /N
+`/5` L /N
+`/6` C; /N
+;
 
 M
 
