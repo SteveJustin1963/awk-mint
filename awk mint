@@ -1,59 +1,69 @@
-// Constants for tracking fields and counters
-0 a!               // Initialize COL1-SUM to 0 (analogous to column sum)
-0 b!               // Initialize NUM-FIELDS (for counting fields)
+0 a!               // Initialize COL1-SUM to 0 (sum of column 2)
+0 b!               // Initialize NUM-FIELDS (number of fields)
 
-// Split input string into fields (assume space-delimited by default)
-: SPLIT            // Function to split a string into fields
-    0 b!           // Initialize number of fields (NUM-FIELDS = 0)
-    (  b 1 + b!    // Increment field count (NUM-FIELDS++)
-       `/` 48 -    // Reading input character (simulation)
-       "           // Push the character into the stack (simulate a field)
-    ) ;
+// Split input string into fields (assuming space-delimited)
+:S
+    0 b!           // Set number of fields to 0
+    (`Read and split the input into fields` 48 - ) // Read each char and split
 
-// Print specific columns (1 and 3)
-: PRINT-COLUMNS    
-    b .            // Print number of fields
-    a 1 = ( `Column 1: ` a . ) /E   // If 1st column, print it
-    a 3 = ( `Column 3: ` a . ) /E   // If 3rd column, print it
+// Print specific columns (columns 1 and 3)
+:P
+    b .            // Print number of fields (NF)
+    1 = (`Column 1: ` a . ) /E   // If it's column 1, print
+    3 = (`Column 3: ` a . ) /E   // If it's column 3, print
 ;
 
 // Sum values in column 2
-: SUM-COLUMN-2     
-    a 2 = ( a + a! )                // If it's column 2, add to COL1-SUM
-    `Running sum of column 2: ` a . // Print the sum
+:Q
+    2 = ( a + a! )                // If it's column 2, add to COL1-SUM
+    `Running sum of column 2: ` a . // Print the running sum
 ;
 
-// Check if column 3 is greater than 100
-: CHECK-COLUMN-3   
-    a 3 = ( a 100 > ( `Column 3 greater than 100` . ) /E ) 
+// Check if column 3 > 100
+:R
+    3 = ( a 100 > (`Column 3 greater than 100` . ) ) /E
 ;
 
 // Print formatted output
-: PRINT-FORMATTED  
-    `Formatted output: ` a .        
+:F
+    `Formatted output: ` a .     // Print formatted column
 ;
 
 // Print the entire input line
-: PRINT-LINE 
-    `Entire line: ` .               // Print entire input line
+:L
+    `Entire line: ` .            // Print the whole line
 ;
 
 // Count number of fields
-: COUNT-FIELDS 
-    SPLIT
-    b .                              // Print number of fields (NF)
+:C
+    S                            // Call split function
+    b .                          // Print number of fields (NF)
 ;
 
-// Main command function
-: MAIN
+// Main command prompt
+:M
     `Choose a command: ` . 
-    `/1` PRINT-COLUMNS
-    `/2` SUM-COLUMN-2
-    `/3` CHECK-COLUMN-3
-    `/4` PRINT-FORMATTED
-    `/5` PRINT-LINE
-    `/6` COUNT-FIELDS
+    `/1` P                       // Call function P (Print specific columns)
+    `/2` Q                       // Call function Q (Sum column 2)
+    `/3` R                       // Call function R (Check if column 3 > 100)
+    `/4` F                       // Call function F (Formatted print)
+    `/5` L                       // Call function L (Print line)
+    `/6` C                       // Call function C (Count fields)
 ;
 
 // Start processing
-MAIN
+M                                // Run the main function
+
+//////////////////
+
+0 a! 0 b!
+:S 0 b! ( `Read and split the input into fields` 48 - )
+:P b . 1 = ( `Column 1: ` a . ) /E 3 = ( `Column 3: ` a . ) /E
+:Q 2 = ( a + a! ) `Running sum of column 2: ` a .
+:R 3 = ( a 100 > ( `Column 3 greater than 100` . ) ) /E
+:F `Formatted output: ` a .
+:L `Entire line: ` .
+:C S b .
+:M `Choose a command: ` . `/1` P `/2` Q `/3` R `/4` F `/5` L `/6` C
+M
+///////////////////////
