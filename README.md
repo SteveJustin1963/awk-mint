@@ -244,6 +244,6 @@ AWK is a powerful text-processing tool in Unix/Linux that allows users to extrac
 14. Multi-file processing.
 15. Inline and file-based AWK scripts.
 
-These features make AWK a versatile and powerful tool for text manipulation and data extraction in Unix/Linux environments.
-### v
+### mint
+am still scratching my head
 
