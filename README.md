@@ -1,6 +1,6 @@
-# awk-forth
+ 
 
-### AWK
+ # AWK
 
 AWK is a powerful text processing tool available on Linux (and other Unix-like systems). It allows you to manipulate and analyze text, especially structured data such as columns in a file. AWK operates on files, reading them line by line and applying user-defined patterns and actions. It’s ideal for tasks such as extracting fields, processing data, and generating reports.
 
